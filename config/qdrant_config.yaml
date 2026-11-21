@@ -1,0 +1,8 @@
+service:
+  enable_tls: true
+  api_key: REPLACE_WITH_STRONG_QDRANT_API_KEY
+
+tls:
+  cert: /certs/qdrant.crt
+  key: /certs/qdrant.key
+  ca_cert: /certs/ca.crt

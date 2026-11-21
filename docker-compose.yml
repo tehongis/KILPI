@@ -1,0 +1,41 @@
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: defense-qdrant
+    volumes:
+      - ./config/qdrant_config.yaml:/qdrant/config/production.yaml:ro
+      - ./certs:/certs:ro
+      - qdrant_data:/qdrant/storage
+    networks:
+      - internal_net
+
+  policy-proxy:
+    build: .
+    container_name: defense-policy-proxy
+    ports:
+      - "8000:8000"
+    environment:
+      - VALKEY_HOST=valkey
+      - VALKEY_PORT=6379
+      - VALKEY_TLS=true
+      - VALKEY_PASSWORD=REPLACE_WITH_STRONG_VALKEY_PASSWORD
+      - CERT_DIR=/certs
+      - OPA_URL=http://opa:8181/v1/data/defense/llm/authz
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - QDRANT_TLS=true
+      - QDRANT_API_KEY=REPLACE_WITH_STRONG_QDRANT_API_KEY
+      - JWT_ALGORITHM=RS256
+      - JWT_ISSUER=https://defense.internal
+      - JWT_AUDIENCE=defense-llm-proxy
+      - JWT_PUBLIC_KEY_PATH=/certs/idp_public.pem
+    volumes:
+      - ./certs:/certs:ro
+    depends_on:
+      valkey:
+        condition: service_healthy
+      opa:
+        condition: service_started
+      qdrant:
+        condition: service_started
+    networks:
+      - internal_net

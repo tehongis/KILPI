@@ -1,0 +1,13 @@
+================================================================================
+COPYRIGHT & INTELLECTUAL PROPERTY NOTICE
+================================================================================
+Project: Zero-Trust Defense LLM Guardrail & RAG Policy Proxy
+Copyright (c) 2026 Tero Hongisto. All rights reserved.
+
+Creator & Owner: Tero Hongisto
+
+Notice: This software, architecture, policy definitions, and associated
+documentation are the proprietary intellectual property of Tero Hongisto.
+Unauthorized copying, distribution, modification, or commercial use without
+explicit written permission from the owner is strictly prohibited.
+================================================================================

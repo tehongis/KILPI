@@ -1,0 +1,11 @@
+valkey>=6.0.0
+requests>=2.31.0
+llm-guard>=0.3.15
+onnxruntime>=1.17.0
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+PyJWT[crypto]>=2.8.0
+qdrant-client>=1.9.0
+fastembed>=0.3.0
+presidio-analyzer>=2.2.354
+spacy>=3.7.0
